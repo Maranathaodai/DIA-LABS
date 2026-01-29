@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 class BasicAgent(Agent):
     class PrintHelloBehaviour(OneShotBehaviour):
         async def run(self):
-            print(f"👋 Greetings from SPADE! Agent {self.agent.jid} is now online and ready to serve in the disaster response system.")
+            print(f"Agent {self.agent.jid} is now online and ready to serve in the disaster response system.")
             await self.agent.stop()
 
     async def setup(self):

@@ -2,3 +2,5 @@
 .venv/
 # Ignore environment variable file
 .env
+
+LAB_REPORT.txt
