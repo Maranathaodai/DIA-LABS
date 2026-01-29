@@ -40,6 +40,7 @@ class SensorAgent(Agent):
             super().__init__(**kwargs)
             self.env = env
             self.cycle = 0
+            self.disaster_events = []  # Track all detected disasters
 
         async def run(self):
             self.cycle += 1
@@ -55,6 +56,23 @@ class SensorAgent(Agent):
                     disaster_detected = True
                     affected_population = random.randint(100, 5000)
                     resources_needed = random.randint(1, 20)
+                    
+                    # Map severity to level number
+                    severity_level = {"LOW": 1, "MEDIUM": 2, "HIGH": 3, "CRITICAL": 4}
+                    level = severity_level.get(cond['severity'], 0)
+                    
+                    # Store event details
+                    event = {
+                        "timestamp": timestamp,
+                        "type": cond['disaster'],
+                        "location": zone,
+                        "severity": cond['severity'],
+                        "level": level,
+                        "affected_population": affected_population,
+                        "resources_needed": resources_needed
+                    }
+                    self.disaster_events.append(event)
+                    
                     print("!"*20 + " DISASTER DETECTED! " + "!"*20)
                     print(f"Type: {cond['disaster']}")
                     print(f"Location: {zone}")
@@ -64,6 +82,27 @@ class SensorAgent(Agent):
                     print(f"Timestamp: {timestamp}")
             if not disaster_detected:
                 print(f"[{self.agent.jid}] No new disasters detected in this cycle.")
+        
+        def generate_log_file(self):
+            """Generate a formatted disaster event log file"""
+            with open("disaster_events.log", "w") as f:
+                f.write("DISASTER EVENT LOG\n")
+                f.write("="*60 + "\n")
+                f.write("SensorAgent ID: SENSOR-001\n")
+                f.write(f"Total Events Detected: {len(self.disaster_events)}\n")
+                f.write("="*60 + "\n\n")
+                
+                for idx, event in enumerate(self.disaster_events, 1):
+                    f.write(f"Event #{idx}\n")
+                    f.write(f"  Timestamp: {event['timestamp']}\n")
+                    f.write(f"  Type: {event['type']}\n")
+                    f.write(f"  Location: {event['location']}\n")
+                    f.write(f"  Severity: {event['severity']} (Level {event['level']})\n")
+                    f.write(f"  Affected Population: {event['affected_population']}\n")
+                    f.write(f"  Resources Needed: {event['resources_needed']}\n")
+                    f.write("-"*60 + "\n\n")
+            
+            print(f"\n[LOG] Disaster event log saved to disaster_events.log ({len(self.disaster_events)} events)")
 
     async def setup(self):
         print("\n============================================================")
@@ -74,8 +113,8 @@ class SensorAgent(Agent):
         env = DisasterEnvironment()
         print(f"[SensorAgent {self.jid}] Monitoring locations: {env.zones}\n")
         print("[System] Starting perception cycles...\n")
-        b = self.PerceptionBehaviour(env, period=5)
-        self.add_behaviour(b)
+        self.perception_behaviour = self.PerceptionBehaviour(env, period=5)
+        self.add_behaviour(self.perception_behaviour)
 
 
 async def main():
@@ -90,24 +129,12 @@ async def main():
         while agent.is_alive():
             await asyncio.sleep(1)
     except KeyboardInterrupt:
+        print("\n[System] Stopping agent...")
+        # Generate log file before stopping
+        if hasattr(agent, 'perception_behaviour'):
+            agent.perception_behaviour.generate_log_file()
         await agent.stop()
-
-if __name__ == "__main__":
-    asyncio.run(main())
-
-async def main():
-    load_dotenv()
-    agent_jid = os.getenv("AGENT_JID")
-    agent_password = os.getenv("AGENT_PASSWORD")
-
-    agent = SensorAgent(agent_jid, agent_password)
-    await agent.start()
-    print("SensorAgent is running. Press Ctrl+C to stop.")
-    try:
-        while agent.is_alive():
-            await asyncio.sleep(1)
-    except KeyboardInterrupt:
-        await agent.stop()
+        print("[System] Agent stopped successfully.")
 
 if __name__ == "__main__":
     asyncio.run(main())

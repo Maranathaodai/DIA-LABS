@@ -1,0 +1,100 @@
+============================================================
+Lab 2: SENSOR AGENT DEMONSTRATION
+Perception and Environment Modeling
+============================================================
+
+[Environment] Disaster environment initialized
+
+[SensorAgent maranathaokeleyodai@xmpp.jp] Initialized
+[SensorAgent maranathaokeleyodai@xmpp.jp] Monitoring locations: ['Zone A', 'Zone B', 'Zone C', 'Zone D']
+
+[System] Starting perception cycles...
+
+SensorAgent is running. Press Ctrl+C to stop.
+
+############################################################
+CYCLE 1 - SENSOR PERCEPTION CYCLE
+############################################################
+[maranathaokeleyodai@xmpp.jp] Zone A: Temp=28°C, Humidity=70%, Visibility=Moderate
+!!!!!!!!!!!!!!!!!!!! DISASTER DETECTED! !!!!!!!!!!!!!!!!!!!!
+Type: Fire
+Location: Zone A
+Severity: CRITICAL
+Affected Population: 4941 people
+Resources Needed: 10
+Timestamp: 2026-01-29 10:41:52
+[maranathaokeleyodai@xmpp.jp] Zone B: Temp=39°C, Humidity=34%, Visibility=Moderate
+!!!!!!!!!!!!!!!!!!!! DISASTER DETECTED! !!!!!!!!!!!!!!!!!!!!
+Type: Fire
+Location: Zone B
+Severity: CRITICAL
+Affected Population: 4069 people
+Resources Needed: 14
+Timestamp: 2026-01-29 10:41:52
+[maranathaokeleyodai@xmpp.jp] Zone C: Temp=22°C, Humidity=68%, Visibility=Clear
+!!!!!!!!!!!!!!!!!!!! DISASTER DETECTED! !!!!!!!!!!!!!!!!!!!!
+Type: Fire
+Location: Zone C
+Severity: LOW
+Affected Population: 911 people
+Resources Needed: 13
+Timestamp: 2026-01-29 10:41:52
+[maranathaokeleyodai@xmpp.jp] Zone D: Temp=35°C, Humidity=65%, Visibility=Moderate
+
+############################################################
+CYCLE 2 - SENSOR PERCEPTION CYCLE
+############################################################
+[maranathaokeleyodai@xmpp.jp] Zone A: Temp=23°C, Humidity=71%, Visibility=Moderate
+[maranathaokeleyodai@xmpp.jp] Zone B: Temp=31°C, Humidity=55%, Visibility=Moderate
+!!!!!!!!!!!!!!!!!!!! DISASTER DETECTED! !!!!!!!!!!!!!!!!!!!!
+Type: Fire
+Location: Zone B
+Severity: LOW
+Affected Population: 332 people
+Resources Needed: 7
+Timestamp: 2026-01-29 10:41:57
+[maranathaokeleyodai@xmpp.jp] Zone C: Temp=24°C, Humidity=81%, Visibility=Moderate
+!!!!!!!!!!!!!!!!!!!! DISASTER DETECTED! !!!!!!!!!!!!!!!!!!!!
+Type: Flood
+Location: Zone C
+Severity: LOW
+Affected Population: 1298 people
+Resources Needed: 18
+Timestamp: 2026-01-29 10:41:57
+[maranathaokeleyodai@xmpp.jp] Zone D: Temp=20°C, Humidity=55%, Visibility=Clear
+
+############################################################
+CYCLE 3 - SENSOR PERCEPTION CYCLE
+############################################################
+[maranathaokeleyodai@xmpp.jp] Zone A: Temp=37°C, Humidity=82%, Visibility=Poor
+!!!!!!!!!!!!!!!!!!!! DISASTER DETECTED! !!!!!!!!!!!!!!!!!!!!
+Type: Flood
+Location: Zone A
+Severity: CRITICAL
+Affected Population: 4621 people
+Resources Needed: 8
+Timestamp: 2026-01-29 10:42:02
+[maranathaokeleyodai@xmpp.jp] Zone B: Temp=21°C, Humidity=86%, Visibility=Poor
+!!!!!!!!!!!!!!!!!!!! DISASTER DETECTED! !!!!!!!!!!!!!!!!!!!!
+Type: Flood
+Location: Zone B
+Severity: MEDIUM
+Affected Population: 518 people
+Resources Needed: 10
+Timestamp: 2026-01-29 10:42:02
+[maranathaokeleyodai@xmpp.jp] Zone C: Temp=30°C, Humidity=51%, Visibility=Poor
+!!!!!!!!!!!!!!!!!!!! DISASTER DETECTED! !!!!!!!!!!!!!!!!!!!!
+Type: Fire
+Location: Zone C
+Severity: LOW
+Affected Population: 4123 people
+Resources Needed: 2
+Timestamp: 2026-01-29 10:42:02
+[maranathaokeleyodai@xmpp.jp] Zone D: Temp=25°C, Humidity=41%, Visibility=Clear
+!!!!!!!!!!!!!!!!!!!! DISASTER DETECTED! !!!!!!!!!!!!!!!!!!!!
+Type: Flood
+Location: Zone D
+Severity: MEDIUM
+Affected Population: 1938 people
+Resources Needed: 3
+Timestamp: 2026-01-29 10:42:02
