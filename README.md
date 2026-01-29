@@ -28,7 +28,7 @@ DIA-LABS/
 └── disaster_events.log # (Optional) Event logs if file logging is used
 ```
 
-## How to Run
+# How to Run
 1. Clone the repository and open in VS Code or GitHub Codespaces
 2. Create and activate a Python virtual environment (`python -m venv .venv`)
 3. Install dependencies (`pip install spade python-dotenv`)
